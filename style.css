@@ -4,12 +4,16 @@
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400 500;font-display:swap;src:url(fonts/cormorant-garamond-italic.woff2) format('woff2')}
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/barlow-condensed-600.woff2) format('woff2')}
 @font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/playfair-display-italic-400.woff2) format('woff2')}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/outfit-500.woff2) format('woff2')}
 @font-face{font-family:'Playfair Display';font-style:italic;font-weight:700;font-display:swap;src:url(fonts/playfair-display-italic-700.woff2) format('woff2')}
 
-:root{color-scheme:dark;--ink:#0A0B09;--ink2:#121310;--text:#F2EEE3;--soft:#E7D8B4;--muted:#9C9688;--brass:#C9A45C;--brass-hi:#F6E6B4}
+:root{color-scheme:dark;--ink:#0A0B09;--ink2:#121310;--text:#F2EEE3;--soft:#E7D8B4;--muted:#9C9688;--brass:#C9A45C;--brass-hi:#F6E6B4;
+  /* Faint cloth texture (same feTurbulence as gjemo.no): neutral, and green in the hero */
+  --felt-n:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.15'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --felt-g:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.137 0 0 0 0 0.439 0 0 0 0 0.290 0 0 0 1 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.18'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--ink);color:var(--text);font-family:'Barlow Condensed',system-ui,sans-serif;font-size:19px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+body{margin:0;background:var(--felt-n),var(--ink);color:var(--text);font-family:'Barlow Condensed',system-ui,sans-serif;font-size:19px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
 a{color:var(--soft);text-decoration:none}
 a:hover{color:var(--brass-hi)}
 a:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
@@ -17,7 +21,7 @@ main{flex:1}
 img,svg{max-width:100%}
 
 /* Brass wordmark and rules */
-.topbar{position:relative;background:linear-gradient(180deg,var(--ink2),var(--ink));box-shadow:inset 0 -1px 0 rgba(201,164,92,.55)}
+.topbar{position:relative;background:var(--felt-n),linear-gradient(180deg,var(--ink2),var(--ink));box-shadow:inset 0 -1px 0 rgba(201,164,92,.55)}
 .topbar-in{max-width:1180px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:center;gap:12px 24px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .brand svg{display:block;flex:none}
@@ -28,13 +32,17 @@ img,svg{max-width:100%}
 .nav{display:flex;gap:32px;font-size:14px;letter-spacing:.32em;text-transform:uppercase}
 .nav a{display:inline-block;padding:14px 6px;margin:-14px -6px}
 .nav a[aria-current]{color:var(--brass-hi)}
-.botbar{background:var(--ink);box-shadow:inset 0 1px 0 rgba(201,164,92,.55);margin-top:auto}
+.botbar{background:var(--felt-n),var(--ink);box-shadow:inset 0 1px 0 rgba(201,164,92,.55);margin-top:auto}
 .botbar-in{max-width:1180px;margin:0 auto;padding:40px 32px 56px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
 .botbar .nav{gap:28px;font-size:13px}
 .botbar small{font-size:14px;color:#8C8574}
+.madeby{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.madeby a{display:inline-flex;align-items:center;gap:6px;padding:12px 4px;margin:-12px -4px}
+.madeby svg{display:block;flex:none}
+.madeby span{font-family:'Outfit',system-ui,sans-serif;font-weight:500;font-size:14px;letter-spacing:.2em;background:linear-gradient(45deg,#7B93F0,#A78BFA);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* Home: hero */
-.hero{position:relative;overflow:hidden;background:var(--ink);padding:120px 32px 140px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.hero{position:relative;overflow:hidden;background:var(--felt-g),var(--ink);padding:120px 32px 140px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
 .hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 50% 15%,#34352E 0%,#16170F 50%,transparent 80%)}
 .hero>*{position:relative}
 .hero>.hero-glow,.hero>.mote{position:absolute}
